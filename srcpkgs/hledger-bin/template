@@ -1,0 +1,40 @@
+# Template file for 'hledger-bin'
+pkgname=hledger-bin
+version=1.42.1
+revision=1
+makedepends="zlib-devel ncurses-devel"
+short_desc="Simple, precise, plain text accounting - precompiled binaries"
+license="GPL-3.0-or-later"
+homepage="https://hledger.org/"
+changelog="https://hackage.haskell.org/package/hledger-${version}/changelog"
+distfiles="https://github.com/simonmichael/hledger/releases/download/${version}/hledger-linux-x64.tar.gz"
+checksum=a274dcb55e7a9b205c0f9bbdd8ee44db6e559bce416c59f8c6cd528725ebadad
+create_wrksrc=yes
+nopie_files="/usr/bin/hledger"
+nocross=yes
+
+do_install() {
+	vbin hledger
+}
+
+post_install() {
+	vman hledger.1
+}
+
+hledger-ui-bin_package() {
+	nopie_files="/usr/bin/hledger-ui"
+	depends="${sourcepkg}>=${version}_${revision}"
+	pkg_install() {
+		vbin hledger-ui
+		vman hledger-ui.1
+	}
+}
+
+hledger-web-bin_package() {
+	nopie_files="/usr/bin/hledger-web"
+	depends="${sourcepkg}>=${version}_${revision}"
+	pkg_install() {
+		vbin hledger-web
+		vman hledger-web.1
+	}
+}
