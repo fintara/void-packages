@@ -1,0 +1,18 @@
+# Template file for 'python3-doit'
+pkgname=python3-doit
+version=0.37.0  # not released
+revision=1
+_commit=00c136f5dfe7e9039d0fed6dddd6d45c84c307b4
+build_style=python3-module
+hostmakedepends="python3-setuptools"
+depends="python3-importlib_metadata"
+short_desc="CLI task management & automation tool"
+license="MIT"
+homepage="https://pydoit.org"
+distfiles="https://github.com/pydoit/doit/archive/${_commit}.tar.gz"
+checksum=c0d2d1d1a38663a166626f19f920ff82fbbff7099cde468c30f5e61841556adc
+
+post_install() {
+	vlicense LICENSE
+}
+
